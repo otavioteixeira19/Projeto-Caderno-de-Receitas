@@ -21,7 +21,7 @@ Um caderno de receitas pessoal, digital e bonito — feito para guardar suas rec
 
 ## 🚀 Como usar
 
-1. **Abra o arquivo `index.html`** no navegador (duplo clique nele, ou veja a seção [Como rodar localmente](#-como-rodar-localmente) abaixo).
+1. **Abra o arquivo `index.html`** no navegador.
 2. Clique em **"Nova receita"** (ou no card tracejado com o `+`) para começar a anotar.
 3. Preencha:
    - **Nome da receita**
