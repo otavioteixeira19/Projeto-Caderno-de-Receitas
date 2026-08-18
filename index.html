@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Caderno de Receitas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; width: 100%; }
+      body { 
+        background: #2B1B10; 
+        color: #FFE6A7;
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+      }
+      #app { 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 28px) 96px;
+      }
+    </style>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <div class="header">
+      <div class="title-block">
+        <p class="eyebrow">Caderno pessoal</p>
+        <h1>Caderno de Receitas</h1>
+        <p>Guarde suas receitas com carinho e encontre qualquer uma delas em segundos.</p>
+      </div>
+      <div class="count-pill" id="countPill">0 receitas</div>
+    </div>
+
+    <div class="search-row">
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input id="searchInput" type="text" placeholder="Buscar por nome ou ingrediente..." />
+      </div>
+      <button class="new-btn" id="newBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        Nova receita
+      </button>
+    </div>
+
+    <div class="filter-row" id="filterRow"></div>
+
+    <div class="grid" id="grid">
+      <div class="loading">Abrindo o caderno...</div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="label" id="panelLabel">Nova receita</span>
+        <div class="panel-head-actions">
+          <button class="icon-btn" id="shareBtn" aria-label="Compartilhar receita">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+          </button>
+          <button class="icon-btn" id="closeBtn" aria-label="Fechar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <input class="name-input" id="nameInput" type="text" placeholder="Nome da receita" />
+
+        <div class="field">
+          <label for="categoryInput">Categoria</label>
+          <input id="categoryInput" type="text" list="categoryOptions" placeholder="ex: Doces, Salgados, Bebidas, Sobremesas..." />
+          <datalist id="categoryOptions"></datalist>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="timeInput">Tempo de preparo</label>
+            <input id="timeInput" type="text" placeholder="ex: 30 min" />
+          </div>
+          <div class="field">
+            <label for="servingsInput">Porções</label>
+            <input id="servingsInput" type="text" placeholder="ex: 4 pessoas" />
+          </div>
+        </div>
+
+        <div class="sections-block">
+          <span class="field-label-standalone">Partes da receita</span>
+          <p class="sections-hint">Divida em seções com o título que quiser, como Massa, Recheio, Cobertura ou Tempero. Use o Modo de Preparo para escrever o passo a passo numerado.</p>
+          <div class="sections-container" id="sectionsContainer"></div>
+          <div class="section-buttons-row">
+            <button type="button" class="add-section-btn" id="addSectionBtn">+ Adicionar seção</button>
+            <button type="button" class="add-section-btn" id="addStepsSectionBtn">+ Adicionar modo de preparo</button>
+          </div>
+        </div>
+
+        <span class="error-text" id="errorText" style="display:none;">Dê um nome para a receita antes de salvar.</span>
+      </div>
+
+      <div class="panel-foot">
+        <button class="delete-btn" id="deleteBtn" style="display:none;">Excluir receita</button>
+        <button class="save-btn" id="saveBtn">Salvar receita</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</body>
+</html>
